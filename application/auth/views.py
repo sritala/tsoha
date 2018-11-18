@@ -7,10 +7,8 @@ from application.auth.forms import LoginForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
-    # aiemmin toteutettu kirjautumistoiminnallisuus
-  
-    return redirect(url_for("index"))    
 
+    return redirect(url_for("index"))    
 
 @app.route("/auth/logout")
 def auth_logout():

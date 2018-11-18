@@ -117,3 +117,4 @@ dmypy.json
 .pyre/
 
 __pyache__
+projects.db
