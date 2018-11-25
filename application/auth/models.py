@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 class User(db.Model):
 
@@ -29,3 +30,5 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+
