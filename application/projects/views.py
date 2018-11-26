@@ -6,6 +6,7 @@ from application.projects.models import Project
 from application.projects.forms import ProjectForm
 
 @app.route("/projects/", methods=["GET"])
+@login_required
 def projects_index():
     return render_template("projects/list.html", projects = Project.query.all())
 
@@ -38,6 +39,8 @@ def projects_create():
   
     t = Project(form.name.data)
     t.done = form.done.data
+    t.time = form.time.data
+    t.name = form.name.data
     t.account_id = current_user.id
     
     db.session().add(t)

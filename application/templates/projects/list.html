@@ -1,22 +1,32 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <h1 class="display-4">Project Times</h1>
-      <th></th>
-    </tr>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Time (h)</th>
+        <th scope="col">Done?</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
     {% for project in projects %}
     <tr>
       <td>{{ project.name }}</td>
       <td>{{ project.time }}</td>
-      <td>{{ project.done }}</td>
+      {% if project.done %}
+      <td>YES!</td>
+      {% else %}
+      <td>IN PROGRESS!</td>
+      {% endif %}
       <td>
-	<form method="POST" action="{{ url_for('projects_set_done', project_id=project.id) }}">
-      <button type="submit" class="btn btn-secondary">Change status</button>
-	</form>
+	      <form method="POST" action="{{ url_for('projects_set_done', project_id=project.id) }}">
+        <button type="submit" class="btn btn-secondary">Change status</button>
+	      </form>
       </td>
     </tr>
     {% endfor %}
+    </tbody>
   </table>
 {% endblock %}
