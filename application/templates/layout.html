@@ -23,12 +23,17 @@
             </ul>
     {% endif %}
 
+<!-- Uloskirjautuminen -->
         <div class="form-inline mt-2 mt-md-0" style="margin-left: auto">
         {% if current_user.is_authenticated %}
           <a href="{{ url_for('auth_logout') }}">Log out</a>
         {% else %}
+<!-- Sisäänkirjautuminen -->
           <a href="{{ url_for('auth_login') }}">Log in</a>
+<!-- Rekisteröityminen -->
+    <li><a href="{{ url_for('auth_register') }}">Sign up</a>
         {% endif %}
+      </li>
         </div>
     </div>
         </nav>

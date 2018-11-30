@@ -16,14 +16,17 @@
       <td>{{ project.name }}</td>
       <td>{{ project.time }}</td>
       {% if project.done %}
-      <td>YES!</td>
+      <td>YES</td>
       {% else %}
-      <td>IN PROGRESS!</td>
+      <td>IN PROGRESS</td>
       {% endif %}
       <td>
-	      <form method="POST" action="{{ url_for('projects_set_done', project_id=project.id) }}">
-        <button type="submit" class="btn btn-secondary">Change status</button>
-	      </form>
+
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a href="{{ url_for('projects_set_done', project_id=project.id) }}" class="btn btn-secondary">Change status</a>
+          <a href="{{ url_for('projects_set_delete', project_id=project.id) }}" class="btn btn-secondary">Remove</a>
+        </div>
       </td>
     </tr>
     {% endfor %}

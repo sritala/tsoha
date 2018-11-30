@@ -15,7 +15,7 @@ def projects_index():
 def projects_form():
     return render_template("projects/new.html", form = ProjectForm())
 
-@app.route("/projects/<project_id>/", methods=["POST"])
+@app.route("/projects/<project_id>/", methods=["GET"])
 @login_required
 def projects_set_done(project_id):
 
@@ -25,6 +25,18 @@ def projects_set_done(project_id):
     else:
         t.done = True 
    
+    db.session().commit()
+  
+    return redirect(url_for("projects_index"))
+
+
+@app.route("/projects/delete/<project_id>/", methods=["GET"])
+@login_required
+def projects_set_delete(project_id):
+
+    t = Project.query.get(project_id)
+   
+    db.session.delete(t)
     db.session().commit()
   
     return redirect(url_for("projects_index"))
