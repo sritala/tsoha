@@ -18,7 +18,7 @@ def projects_index():
 def projects_form():
     return render_template("projects/new.html", form = ProjectForm())
 
-@app.route("/projects/<project_id>/", methods=["GET"])
+@app.route("/projects/togglecomplete/<project_id>", methods=["GET"])
 @login_required
 def projects_set_done(project_id):
 
@@ -28,6 +28,28 @@ def projects_set_done(project_id):
     else:
         t.done = True 
    
+    db.session().commit()
+  
+    return redirect(url_for("projects_index"))
+
+@app.route("/projects/morehours/<project_id>", methods=["GET"])
+@login_required
+def projects_set_more_hours(project_id):
+
+    t = Project.query.get(project_id)
+    t.time = t.time + 1
+    db.session().commit()
+  
+    return redirect(url_for("projects_index"))
+
+@app.route("/projects/lesshours/<project_id>", methods=["GET"])
+@login_required
+def projects_set_less_hours(project_id):
+
+    t = Project.query.get(project_id)
+    if(t.time > 0):
+        t.time = t.time - 1
+        
     db.session().commit()
   
     return redirect(url_for("projects_index"))

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-{% if needs_projects is defined and current_user.is_authenticated %}
+{% if needs_projects and current_user.is_authenticated %}
 <p>
   The following user(s) need to create projects:
 </p>
@@ -12,5 +12,11 @@
   </li>
   {% endfor %}
 </ul>
+{% else %}
+  {% if current_user.is_authenticated %}
+  <p>
+    Everyone has done something 
+  </p>
+  {% endif %} 
 {% endif %}
 {% endblock %}
