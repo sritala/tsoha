@@ -5,6 +5,9 @@ from application import app, db
 from application.projects.models import Project
 from application.projects.forms import ProjectForm
 
+
+
+
 @app.route("/projects/", methods=["GET"])
 @login_required
 def projects_index():
@@ -41,11 +44,11 @@ def projects_set_delete(project_id):
   
     return redirect(url_for("projects_index"))
   
-@app.route("/projects/", methods=["POST"])
+@app.route("/projects", methods=["POST"])
 @login_required
 def projects_create():
     form = ProjectForm(request.form)
-  
+
     if not form.validate():
         return render_template("projects/new.html", form = form)
   

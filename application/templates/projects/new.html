@@ -2,7 +2,6 @@
 {% block body %}
 <form method="POST" action="{{ url_for('projects_create') }}">
    <table>
-   
    <tr>
       <td>
          {{ form.name.label }}
@@ -12,7 +11,7 @@
       </td>
       <td>
          <ul>
-            {% for error in form.name.errors %}
+       {% for error in form.name.errors %}
             <li>{{ error }}</li>
             {% endfor %}
          </ul>
@@ -25,6 +24,13 @@
       </td>
       <td>
          {{ form.time }}
+      </td>
+      <td>
+         <ul>
+            {% for error in form.time.errors %}
+                 <li>{{ error }}</li>
+                  {% endfor %}
+         </ul>
       </td>
    </tr>
    

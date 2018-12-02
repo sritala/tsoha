@@ -7,7 +7,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Project Time Tracker</a>
+    <a class="navbar-brand" href="">Project Time Tracker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,6 +37,7 @@
         </div>
     </div>
         </nav>
+   <!-- Jos kirjautuminen onnistuu niin tulee tervetuloa teksti -->
     <body>
       {% if current_user.is_authenticated %}
       <p>
@@ -51,7 +52,7 @@
       <ul>
       {% block body %}
       <p>
-	Content.
+
       </p>
       {% endblock %}
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

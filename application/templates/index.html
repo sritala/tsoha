@@ -1,4 +1,16 @@
 {% extends "layout.html" %}
-<!DOCTYPE html>
+{% block body %}
+{% if needs_projects is defined and current_user.is_authenticated %}
+<p>
+  The following user(s) need to create projects:
+</p>
 
-</html>
+<ul>
+  {% for user in needs_projects %}
+  <li>
+    {{user.name}}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
