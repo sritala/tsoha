@@ -9,7 +9,7 @@ class Project(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
     time = db.Column(db.Integer, nullable=False)
-    done = db.Column(db.String, nullable=False)
+    done = db.Column(db.String(144), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
