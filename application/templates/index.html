@@ -1,13 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="center-all">
 {% if needs_projects and current_user.is_authenticated %}
 <p>
-  The following users have no projects:
+  The following users have no projects
 </p>
+  
+<ul class="list-group" style="width: 400px">
   {% for user in needs_projects %}
-  <ul class="list-group">
-      <li class="list-group-item"> {{user.name}}</li>
-  </li>
+      <li class="list-group-item list-group-item-danger">{{user.name}}</li>
   {% endfor %}
 </ul>
 {% else %}
@@ -17,37 +18,39 @@
   </p>
   {% endif %} 
 {% endif %}
-
+</div>
 <!--Etusivun ulkoasu-->
 
 <!----<div class="hero-banner">
     <img src="/img/hero-banner.jpg/">
     </div>--->
 
-<header>
-  <section class="header-content">
-    <img class="rocky-dashed animate-pop-in" src="">
-    <h1 class="header-title animate-pop-in">The Project Tracker</h1>
-    <h3 class="header-subtitle animate-pop-in">An easy way to track your projects</h3>
-    <p class="header-button animate-pop-in"><a href="/auth/register" class="btn btn-secondary">Get started today</a> 
-  </section>
-</header>
+    {% if not current_user.is_authenticated %}
+    <header>
+      <section class="header-content">
+        <img class="rocky-dashed animate-pop-in" src="">
+        <h1 class="header-title animate-pop-in">The Project Tracker</h1>
+        <h3 class="header-subtitle animate-pop-in">An easy way to track your projects</h3>
+        <p class="header-button animate-pop-in"><a href="/auth/register" class="btn btn-secondary">Get started today</a> 
+      </section>
+    </header>
+    {% endif %} 
+ 
 
 
 
 <style>
-/*.hero-banner {
- background: #1F494D;
+  .center-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.hero-banner img {
-mix-blend-mode: multiply;
-filter: grayscale(100%);
-}*/
  header {
   align-items: center;
   display: flex;
   font-size: 18px;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   overflow: hidden;
   position: relative;
@@ -70,7 +73,6 @@ header:before {
 }
 
 header:after {
-  animation: rotate-up .5s .5s cubic-bezier(0, 0.5, 0, 1) forwards;
   background: #F9FCFF;
   content: "";
   height: 40rem;
@@ -143,12 +145,6 @@ header:after {
   100% {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes rotate-up {
-  100% {
-    transform: rotateZ(-4deg);
   }
 }
 </style>

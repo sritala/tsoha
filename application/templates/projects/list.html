@@ -5,37 +5,38 @@
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col" class="text-right">Time (h)</th>
-        <th scope="col"></th>
+        <th scope="col">Time (h)</th>
         <th scope="col">Done?</th>
-        <th scope="col"></th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
     {% for project in projects %}
     <tr>
-      <td>{{ project.name }}</td>
-      <td class="text-right">{{ project.time }}</td>
-      {% if project.done %}
-      <td></td>
-      <td>YES</td>
-      {% else %}
       <td>
-        <a href="{{ url_for('projects_set_more_hours', project_id=project.id) }}" class="btn btn-sm btn-success">&#9650;</a>
-        <a href="{{ url_for('projects_set_less_hours', project_id=project.id) }}" class="btn btn-sm btn-danger">&#9660;</a>
+        <span class="badge badge-primary">{{ project.name }}</span>
       </td>
-      <td>NOU</td>
+      <td>{{ project.time }}</td>
+      {% if project.done %}
+        <td style="min-width: 50px">YES</td>
+      {% else %}
+        <td style="min-width: 50px">NO</td>
       {% endif %}
       <td>
-
-
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="{{ url_for('projects_set_done', project_id=project.id) }}" class="btn btn-dark">Change status</a>
-          <a href="{{ url_for('projects_set_delete', project_id=project.id) }}" class="btn btn-outline-danger">Remove</a>
-        </div>
-      </td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="{{ url_for('projects_show', project_id=project.id) }}" class="btn btn-outline-success">Edit</a>
+            <a href="{{ url_for('projects_set_delete', project_id=project.id) }}" class="btn btn-outline-danger">Remove</a>
+          </div>
+        </td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
+  <style>
+  .badge{ 
+    padding: 6px 15px 6px 15px;
+    font-size: 1.5em;
+    font-weight: 300;
+}
+  </style>
 {% endblock %}

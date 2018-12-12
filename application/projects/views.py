@@ -6,12 +6,15 @@ from application.projects.models import Project
 from application.projects.forms import ProjectForm
 
 
-
-
 @app.route("/projects/", methods=["GET"])
 @login_required
 def projects_index():
     return render_template("projects/list.html", projects = Project.query.all())
+
+@app.route("/projects/<project_id>/", methods=["GET"])
+@login_required
+def projects_show(project_id):
+    return render_template("projects/edit.html", form = ProjectForm(), project = Project.query.get(project_id))
 
 @app.route("/projects/new/")
 @login_required
@@ -30,7 +33,7 @@ def projects_set_done(project_id):
    
     db.session().commit()
   
-    return redirect(url_for("projects_index"))
+    return redirect(url_for('projects_show', project_id=project_id))
 
 @app.route("/projects/morehours/<project_id>", methods=["GET"])
 @login_required
@@ -40,7 +43,7 @@ def projects_set_more_hours(project_id):
     t.time = t.time + 1
     db.session().commit()
   
-    return redirect(url_for("projects_index"))
+    return redirect(url_for('projects_show', project_id=project_id))
 
 @app.route("/projects/lesshours/<project_id>", methods=["GET"])
 @login_required
@@ -52,7 +55,7 @@ def projects_set_less_hours(project_id):
         
     db.session().commit()
   
-    return redirect(url_for("projects_index"))
+    return redirect(url_for('projects_show', project_id=project_id))
 
 
 @app.route("/projects/delete/<project_id>/", methods=["GET"])
@@ -81,6 +84,22 @@ def projects_create():
     t.account_id = current_user.id
     
     db.session().add(t)
+    db.session().commit()
+  
+    return redirect(url_for("projects_index"))
+
+@app.route("/projects/edit/<project_id>/", methods=["POST"])
+@login_required
+def projects_edit_name():
+    form = ProjectForm(request.form)
+
+    if not form.validate():
+        return render_template("projects/new.html", form = form)
+  
+    t = Project(form.name.data)
+    t.done = form.done.data
+    t.time = form.time.data
+    t.name = form.name.data    
     db.session().commit()
   
     return redirect(url_for("projects_index"))
