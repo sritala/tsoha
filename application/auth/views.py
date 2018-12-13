@@ -28,7 +28,6 @@ def auth_logout():
     return redirect(url_for("index")) 
 
 #Rekisteröinti
-
 @app.route("/auth/register", methods=["GET"])
 def auth_register_form():
     return render_template("auth/registration.html", form=RegisterForm())

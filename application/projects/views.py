@@ -9,11 +9,14 @@ from application.projects.forms import ProjectForm
 @app.route("/projects/", methods=["GET"])
 @login_required
 def projects_index():
-    return render_template("projects/list.html", projects = Project.query.all())
+    return render_template("projects/list.html", projects = Project.query.filter_by(account_id=current_user.get_id()))
 
 @app.route("/projects/<project_id>/", methods=["GET"])
 @login_required
 def projects_show(project_id):
+    if(Project.query.get(project_id).account_id != current_user.get_id()):
+        return redirect(url_for("projects_index"))
+
     return render_template("projects/edit.html", form = ProjectForm(), project = Project.query.get(project_id))
 
 @app.route("/projects/new/")
