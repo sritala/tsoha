@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="center-all">
-{% if needs_projects and current_user.is_authenticated %}
+  {% if needs_projects and current_user.is_authenticated %}
 <p>
   The following users have no projects
 </p>

@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('projects_create') }}">
+
         <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Name: {{ project.name }}</th>
                     <th scope="col">Time (h)</th>
                     <th scope="col">Done?</th>
                     <th scope="col"></th>
@@ -13,14 +13,18 @@
                 </thead>
                 <tbody>
         <td>
-         {{ form.name }}
+          <form method="POST" action="{{ url_for('projects_edit_name') }}">
+            <input type="hidden" name="project_id" value="{{ project.id }}">
+            {{ form.name }}
+            <button type="submit" class="btn btn-secondary">Change name</button>
+        </form>
         </td>
          <ul>
-       {% for error in form.name.errors %}
+          {% for error in form.name.errors %}
             <li>{{ error }}</li>
             {% endfor %}
          </ul>
-      <td>
+            <td>
             {{ project.time }}
                 <a href="{{ url_for('projects_set_more_hours', project_id=project.id) }}" class="btn btn-sm btn-success">&#9650;</a>
                 <a href="{{ url_for('projects_set_less_hours', project_id=project.id) }}" class="btn btn-sm btn-danger">&#9660;</a>
@@ -34,7 +38,7 @@
                 <a href="{{ url_for('projects_set_done', project_id=project.id) }}" class="btn btn-sm btn-success">CHANGE STATUS</a>
             </td>
    </table>
-</form>
+
 
     
 {% endblock %}

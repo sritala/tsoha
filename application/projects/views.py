@@ -91,18 +91,12 @@ def projects_create():
   
     return redirect(url_for("projects_index"))
 
-@app.route("/projects/edit/<project_id>/", methods=["POST"])
+@app.route("/projects/edit", methods=["POST"])
 @login_required
 def projects_edit_name():
     form = ProjectForm(request.form)
-
-    if not form.validate():
-        return render_template("projects/new.html", form = form)
-  
-    t = Project(form.name.data)
-    t.done = form.done.data
-    t.time = form.time.data
-    t.name = form.name.data    
+    project_id = request.values.get("project_id")
+    edited_project = Project.query.get(project_id)
+    edited_project.name = form.name.data
     db.session().commit()
-  
     return redirect(url_for("projects_index"))
