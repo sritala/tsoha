@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-  <html>
-    <head>
+    <body> 
       <meta charset="utf-8">
       <title>Project Tracker</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ url_for('index') }}">Project Tracker</a>
-    {% if current_user.is_authenticated %}
+        <nav class="navbar navbar-expand-md">
+            {% if current_user.is_authenticated %}
+    <a class="navbar-brand" style="color: white" href="{{ url_for('index') }}">Project Tracker</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
@@ -21,42 +18,151 @@
     {% endif %}
 
 <!-- Uloskirjautuminen -->
-        <div class="form-inline mt-2 mt-md-0" style="margin-left: auto">
+        <div class="form-inline mt-2 mt-md-0">
         {% if current_user.is_authenticated %}
           <a href="{{ url_for('auth_logout') }}">Log out</a>
+
         {% else %}
 <!-- Sisäänkirjautuminen -->
-          <a style="margin-right: 10px" href="{{ url_for('auth_login') }}">Log in</a>
-<!-- Rekisteröityminen -->
-        <a href="{{ url_for('auth_register') }}">Sign up</a>
-        {% endif %}
-
+<a class="navbar-brand" style="color: white" href="{{ url_for('index') }}">Project Tracker</a>
+        </li>         
+ <!---Rekisteröityminen
+        <a class="links_signin" href="{{ url_for('auth_register') }}">Sign up</a>--> 
+        {% endif %} 
         </div>
-    </div>
         </nav>
-    <body>
+    
       {% if current_user.is_authenticated %}
       <div class="center-all-layout">
+        <div class="center-all-layout-h">
+          <h6>Nice to see you</h6>
           <h5>
-            <small class="text-muted">{{ current_user.name }}</small>
+            <p></p>
+            {{ current_user.name }}
           </h5> 
-      </div>   
-      {% endif %}
+        </div>
+      </div>  
 
       
+    {% endif %}
+
       {% block body %}
       <!-- CONTENT - DO NOT ALTER -- -->
       {% endblock %}
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+</body>
     <style>
+      body{
+        background: linear-gradient(180deg, #6C63FF 0%, #AAA5FF 100%), linear-gradient(0deg, #6C63FF, #6C63FF), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+
+      }
+
        .center-all-layout {
          display: flex;
          justify-content: center;
-         margin-top: 15px;
+         background: transparent;
+     
+       
+           
       }
+       .links_login{
+        color: white;
+        white-space: nowrap;
+        margin-right: 20px;
+        font-size: 15px;
+      }
+      .links_signin{
+        color: white;
+        word-break: unset;
+        white-space: nowrap;
+        font-size: 15px;
+      }
+
+      .navbar{
+        width: 100%;
+        background: transparent;
+        color: white;
+        font-weight: 200;
+      }
+      .center-all-layout-h{
+        color: white;
+        margin-top: 35px;  
+        text-align: center;
+  
+      }
+      .center-all-layout h6{
+           font-size: 25px;
+           font-style: italic;
+           font-weight:100;
+      }
+      .center-all-layout h5{
+           font-size: 30px;
+           font-weight:300;
+   
+      }
+
+      .nav-link{
+        color: white;
+        white-space: nowrap;
+        margin-right: 20px;
+        font-size: 15px;
+      }
+  
+      th, td {
+      color: rgb(40, 36, 121);
+      font-weight: 200;
+      
+      }
+
+      th{
+        font-size: 20px;
+        
+      }
+
+      
+      a{
+        color: white;
+        font-weight: 100;
+        margin-right: 10px;
+      
+      }
+
+      a:hover{
+        color:  rgba(145, 141, 221, 0.548);
+        text-decoration: none;
+      }
+
+
+      table{
+        margin-top: 20px;  
+      }
+    
+      button.button_project{
+      background:  rgb(40, 36, 121);
+      border: none;
+      border-radius: 8px;
+      width: 25%;
+      height: 30px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+      }
+
+     .table thead th {
+      vertical-align: bottom;
+      border-bottom: 1px solid #dee2e6;
+      padding-left: 25px;
+      border-top: none;    
+      }
+      .table thead td {
+      padding-left: 45px;   
+      }
+
+      .svg{
+        float: right;
+      }
+  
     </style>
   </html>  
  

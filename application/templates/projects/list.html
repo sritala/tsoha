@@ -1,26 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<html class="background">
   <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Time (h)</th>
-        <th scope="col">Done?</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Done</th>
         <th scope="col"></th>
       </tr>
     </thead>
-    <tbody>
+
     {% for project in projects %}
     <tr>
       <td>
-          <a href="{{ url_for('projects_show', project_id=project.id) }}">{{ project.name }}</a>
+          <button type="button" class="button_project"><a href="{{ url_for('projects_show', project_id=project.id) }}">{{ project.name }}</a></button>
       </td>
-      <td>{{ project.time }}</td>
+      <td style="padding-left:50px">{{ project.time }}</td>
       {% if project.done %}
-        <td style="min-width: 50px">YES</td>
+        <td style="padding-left:35px">YES</td>
       {% else %}
-        <td style="min-width: 50px">NO</td>
+        <td style="padding-left:35px">NO</td>
       {% endif %}
       <td>
           <!--div class="btn-group" role="group" aria-label="Basic example">
@@ -30,13 +31,25 @@
         </td>
     </tr>
     {% endfor %}
-    </tbody>
   </table>
+  </html>
+
   <style>
   .badge{ 
     padding: 6px 15px 6px 15px;
     font-size: 1.5em;
     font-weight: 300;
 }
+.background{
+  align-content: center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+ 
+}
+
+
   </style>
 {% endblock %}

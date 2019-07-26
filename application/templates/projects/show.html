@@ -6,32 +6,105 @@
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Time (h)</th>
-                    <th scope="col">Done?</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Done</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
         <tbody>
-        <td>
+        <td style="padding-left: 20px">
             {{ project.name }}
         </td>
-            <td>
+            <td style="padding-left: 40px">
             {{ project.time }}
             </td>
             {% if project.done %}
-                <td style="min-width: 50px">YES</td>
+                <td style="padding-left: 35px">YES</td>
               {% else %}
-                <td style="min-width: 50px">NO</td>
+                <td style="padding-left: 35px">NO</td>
               {% endif %}
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ url_for('projects_edit', project_id=project.id) }}" class="btn btn-outline-success">Edit</a>
-                    <a href="{{ url_for('projects_set_delete', project_id=project.id) }}" class="btn btn-outline-danger">Remove</a>
-                    <a href="{{ url_for('projects_index')}}" class="btn btn-outline-primary">Index</a>
+                    <a href="{{ url_for('projects_edit', project_id=project.id) }}" class="edit">Edit</a>
+                    <a href="{{ url_for('projects_set_delete', project_id=project.id) }}" class="remove">Remove</a>
+                    <a href="{{ url_for('projects_index')}}" class="index">Back</a>
                 </div>
             </td>
             </tbody>
    </table>
+
+   <style>
+   table, th, td {
+  color: 1px white;
+
+}
+
+.edit{
+  color: rgb(30, 124, 101);
+  background-image: none;
+  border: 1px solid rgb(94, 185, 163);
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.edit:hover{
+  color: white;
+  text-decoration: none;
+  background:rgb(94, 185, 163);
+}
+
+.remove{
+  color: rgb(153, 32, 48);
+  background-image: none;
+  border: 1px solid rgba(197, 52, 71, 0.829);
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.remove:hover{
+  color: white;
+  text-decoration: none;
+  background:rgb(197, 52, 71);
+  border: 1px solid rgb(197, 52, 71);
+}
+.index{
+    color: rgb(22, 18, 102);
+    background-image: none;
+    border-color: rgb(22, 18, 102);
+    width: 80px;
+    height: 30px;
+    border: 1px solid rgb(22, 18, 102);
+    border-radius: 2px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.index:hover{
+  color:white;
+    background-color: rgb(22, 18, 102);
+    border-color: none;
+    width: 80px;
+    height: 30px;
+    border-radius: 2px;
+    text-align: center;
+    text-decoration-line: none;
+}
+
+
+
+
+.btn-group{
+  margin-top: -8px;
+}
+
+
+   </style>
 
 
     

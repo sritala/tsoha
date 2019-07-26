@@ -1,13 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
         <table class="table table-hover">
                 <thead>
                   <tr>
                     <th scope="col">Current Name: {{ project.name }}</th>
-                    <th scope="col">Time (h)</th>
-                    <th scope="col">Done?</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Done</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -16,7 +15,7 @@
           <form method="POST" action="{{ url_for('projects_edit_name') }}">
             <input type="hidden" name="project_id" value="{{ project.id }}">
             {{ form.name }}
-            <button type="submit" class="btn btn-secondary">Change name</button>
+            <button type="submit" class="button">Change name</button>
         </form>
         </td>
          <ul>
@@ -24,24 +23,127 @@
             <li>{{ error }}</li>
             {% endfor %}
          </ul>
-            <td>
+            <td> 
             {{ project.time }}
-                <a href="{{ url_for('projects_set_more_hours', project_id=project.id) }}" class="btn btn-sm btn-success">&#9650;</a>
-                <a href="{{ url_for('projects_set_less_hours', project_id=project.id) }}" class="btn btn-sm btn-danger">&#9660;</a>
+                <a href="{{ url_for('projects_set_more_hours', project_id=project.id) }}" class="up">&#9650;</a>
+                <a href="{{ url_for('projects_set_less_hours', project_id=project.id) }}" class="down">&#9660;</a>
             </td>
             {% if project.done %}
-                <td style="min-width: 50px">YES</td>
+                <td style="padding-left:35px">YES</td>
               {% else %}
-                <td style="min-width: 50px">NO</td>
+                <td style="padding-left:35px">NO</td>
               {% endif %}
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="{{ url_for('projects_set_done', project_id=project.id) }}" class="btn btn-outline-success">Change status</a>
-                <a href="{{ url_for('projects_index')}}" class="btn btn-outline-primary">Index</a>
+                <a href="{{ url_for('projects_set_done', project_id=project.id) }}" class="status">Change status</a>
+                <a href="{{ url_for('projects_index')}}" class="index">Back</a>
                 </div>
             </td>
    </table>
+  </div>
+<style>
 
+  td{
+    margin-left: 30px;
+    margin-top: 20px;
+
+  }
+  
+body{
+  background: #6C63FF;
+  
+}
+
+.button{
+  background: rgb(40, 36, 121);
+  border: none;
+  border-radius: 5px;
+  width: 25%;
+  height: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-weight: 200;
+}
+
+  input{  
+  background:  white;
+  border-radius: 3px;
+  border:none;
+  height: 30px;
+  font-weight: 300;
+  color:rgb(22, 18, 102);
+}
+
+.index{
+    color: rgb(22, 18, 102);
+    background-color: rgba(22, 18, 102, 0.329);
+    background-image: none;
+    border-color: rgb(22, 18, 102);
+    height: 30px;
+    width: 120px;
+    border: 1px solid rgb(22, 18, 102);
+    border-radius: 2px;
+    text-align: center;
+}
+
+.index:hover{
+    color:white;
+    background-color: rgb(22, 18, 102);
+    border-color: none;
+    height: 30px;
+    width: 120px;
+    border-radius: 2px;
+    text-align: center;
+    text-decoration-line: none;
+}
+.status{
+    color: rgb(30, 124, 101);
+    background-color: rgba(146, 222, 203, 0.63);
+    background-image: none;
+    height: 30.5px;
+    width: 120px;
+    border: 1px solid rgb(94, 185, 163);
+    border-radius: 2px;
+    text-align: center;
+}
+
+.status:hover{
+    color:white;
+    background-color:rgb(94, 185, 163);
+    border-color: none;
+    height: 30px;
+    width: 120px;
+    border: 1px solid rgb(94, 185, 163);
+    text-decoration-line: none;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.up{
+  background:rgb(94, 185, 163);
+  border: 4px solid rgb(94, 185, 163);
+  border-radius: 3px;
+}
+
+.up:hover{
+  color: rgb(30, 124, 101);
+  text-decoration: none;
+}
+
+.down{
+  background:rgb(22, 18, 102);
+  border: 4px solid rgb(22, 18, 102);
+  border-radius: 3px;
+}
+
+.down:hover{
+  color: rgb(97, 91, 207);
+  text-decoration: none;
+}
+
+
+
+</style>
 
     
 {% endblock %}
