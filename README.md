@@ -1,4 +1,4 @@
-<h1> Project Time Tracker - sovellus 
+<h1> Project Tracker - sovellus 
 
 <h3> Tämä on harjoitustyö Tietokantasovellus kurssille. Sovelluksen tarkoituksena on seurata projekteihin käytettyä työaikaa. 
 
