@@ -36,7 +36,7 @@ class User(db.Model):
     def find_users_with_no_projects():
         stmt = text("SELECT Account.id, Account.name FROM Account"
                     " LEFT JOIN Project ON Project.account_id = Account.id"
-                    " WHERE (Project.done IS null OR Project.done = true)"
+                    " WHERE (Project.done IS null OR Project.done = 1)"
                     " GROUP BY Account.id"
                     " HAVING COUNT(Project.id) = 0")
         res = db.engine.execute(stmt)
